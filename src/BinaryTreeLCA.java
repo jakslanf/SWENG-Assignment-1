@@ -39,7 +39,9 @@ public class BinaryTreeLCA
 	
 	private int LowestCommonAncestorSearch(Node root, int value1, int value2) { 
 		  
-        if (!findPath(root, value1, path1) || !findPath(root, value2, path2))
+		boolean path1Find = findPath(root, value1, path1);
+		boolean path2Find = findPath(root, value2, path2);
+        if ( !path1Find || !path2Find )
         { 
             System.out.println((path1.size() > 0) ? "" + value1 + " is in BST" : "" + value1 + " is missing from BST"); 
             System.out.println((path2.size() > 0) ? "" + value2 + " is in BST" : "" + value2 + " is missing from BST"); 
@@ -68,7 +70,7 @@ public class BinaryTreeLCA
 		//Rudimentary test system
 		System.out.println("The LCA of 7 and 6 is " + tree.findLowestCommonAncestor(7, 6));
 		System.out.println("The LCA of 3 and 7 is " + tree.findLowestCommonAncestor(3, 7));
-		System.out.println("The LCA of 2 and 4 is " + tree.findLowestCommonAncestor(5, 6));
+		System.out.println("The LCA of 5 and 6 is " + tree.findLowestCommonAncestor(5, 6));
 
 	}
 
