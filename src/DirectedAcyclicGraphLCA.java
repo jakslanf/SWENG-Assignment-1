@@ -48,9 +48,9 @@ public class DirectedAcyclicGraphLCA
 	public void printPath(ArrayList<Node> path)
 	{
 		String pathString = "";
-		for(int i = 0; i < path.size() - 1; i++)
+		for(int i = 0; i < path.size(); i++)
 		{
-			pathString = "" + path.get(i).data;
+			pathString += "" + path.get(i).data;
 			if(i !=path.size() - 1)
 			{
 				pathString += "->";
