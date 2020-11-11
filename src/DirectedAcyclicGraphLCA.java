@@ -38,11 +38,44 @@ public class DirectedAcyclicGraphLCA
 		return completePaths;
 	}
 	
-	// Condense all paths to a Node into two ArrayLists alongside their distance from the starting Node
-	public ArrayList<Node> condenseAncestorList()
+	// Condense all paths to a Node into two ArrayList
+	public ArrayList<Node> getAncestorList(ArrayList<ArrayList<Node>> allPaths)
 	{
-		return null;
+		ArrayList<Node> condensedList = new ArrayList<Node>();
+		
+		for(int i = 0; i < allPaths.size(); i++)
+		{
+			ArrayList<Node> currentPath = allPaths.get(i);
+			for(int j = 0; j < currentPath.size(); i++)
+			{
+				Node selectedNode = currentPath.get(i);
+
+				if(condensedList.indexOf(selectedNode) != -1)
+				{
+					condensedList.add(selectedNode);
+				}
+			}
+		}
+		
+		return condensedList;
 	}
+	
+	public ArrayList<Node> findCommonAncestor(ArrayList<Node> ancestorList1, ArrayList<Node> ancestorList2)
+	{
+		ArrayList<Node> commonAncestors = new ArrayList<Node>();
+		for(int i =0; i < ancestorList1.size(); i++)
+		{
+			for(int j = 0; j < ancestorList2.size(); i++)
+			{
+				if(ancestorList1.get(i) == ancestorList2.get(j))
+				{
+					commonAncestors.add(ancestorList1.get(i));
+				}
+			}
+		}
+		return commonAncestors;
+	}
+	
 	
 	public void printPath(ArrayList<Node> path)
 	{
