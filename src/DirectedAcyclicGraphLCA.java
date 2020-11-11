@@ -3,10 +3,34 @@ import java.util.ArrayList;
 public class DirectedAcyclicGraphLCA
 {
 	Node root;
-	ArrayList<Node> value1Ancestors;
-	ArrayList<Integer> value1AncestorsDistance;
-	ArrayList<Node> value2Ancestors;
-	ArrayList<Integer> value2AncestorsDistance;
+	//ArrayList<Node> value1Ancestors;
+	//ArrayList<Integer> value1AncestorsDistance;
+	//ArrayList<Node> value2Ancestors;
+	//ArrayList<Integer> value2AncestorsDistance;
+	
+	public int findLowestCommonAncestor(int value1, int value2)
+	{
+		ArrayList<ArrayList<Node>> value1AllPaths = BFSPathFind(root, value1);
+		ArrayList<ArrayList<Node>> value2AllPaths = BFSPathFind(root, value2);
+		ArrayList<Node> value1Ancestors = getAncestorList(value1AllPaths);
+		ArrayList<Node> value2Ancestors = getAncestorList(value2AllPaths);
+		ArrayList<Node> commonAncestors = findCommonAncestors(value1Ancestors, value2Ancestors);
+		ArrayList<Integer> value1DistanceToCommonAncestors = new ArrayList<Integer>();
+		ArrayList<Integer> value2DistanceToCommonAncestors = new ArrayList<Integer>();
+		
+		for(int i = 0; i < commonAncestors.size(); i++)
+		{
+			value1DistanceToCommonAncestors.add(findDistanceToAncestor(commonAncestors.get(i), value1AllPaths));
+			value2DistanceToCommonAncestors.add(findDistanceToAncestor(commonAncestors.get(i), value2AllPaths));
+		}
+		for(int i =0; i < commonAncestors.size();i++)
+		{
+			System.out.println(commonAncestors.get(i).data + " is " + value1DistanceToCommonAncestors.get(i) +" nodes from " + value1 +
+					" and " + value2DistanceToCommonAncestors.get(i) + " nodes from " + value2);
+		}
+		
+		return -1;
+	}
 	
 	//An ArrayList containing all possible paths of Nodes you can take from a starting Node to an end node
 	public ArrayList<ArrayList<Node>> BFSPathFind(Node start, int end)
@@ -73,6 +97,30 @@ public class DirectedAcyclicGraphLCA
 			}
 		}
 		return commonAncestors;
+	}
+	
+	public int findDistanceToAncestor(Node ancestor, ArrayList<ArrayList<Node>> allPaths)
+	{
+		int result = -1;
+		if(ancestor == null || allPaths == null)
+		{
+			return result;
+		}
+		for(int i = 0; i < allPaths.size(); i++)
+		{
+			for(int j =0; j < ancestor.data; j++)
+			{
+				if(allPaths.get(i).indexOf(ancestor) != -1)
+				{
+					if((allPaths.size() - 1 - allPaths.get(i).indexOf(ancestor) < result) || result == -1)
+					{
+						result = allPaths.get(i).size() - 1 - allPaths.get(i).indexOf(ancestor);
+					}
+				};
+			}
+		}
+		
+		return result;
 	}
 	
 	

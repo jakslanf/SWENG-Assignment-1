@@ -7,6 +7,15 @@ import org.junit.jupiter.api.Test;
 public class DirectedAcyclicGraphLCATest {
 
 	@Test
+	public void testFindLowestCommonAncestor()
+	{
+		System.out.println("TEST: findLowestCommonAncestor");
+		DirectedAcyclicGraphLCA testGraph = new DirectedAcyclicGraphLCA();
+		testGraph.root = initialiseBasicDirectedAcyclicGraph();
+		testGraph.findLowestCommonAncestor(7, 10);
+	}
+	
+	@Test
 	public void testBFSPathFind()
 	{
 		System.out.println("TEST: BFSPathFind");
@@ -60,6 +69,23 @@ public class DirectedAcyclicGraphLCATest {
 		}
 		System.out.println(result);
 		assertEquals(result, "4,7");
+	}
+	
+	@Test
+	public void findDistanceToAncestor()
+	{
+		System.out.println("TEST: findDistanceToAncestor");
+		DirectedAcyclicGraphLCA testGraph = new DirectedAcyclicGraphLCA();
+		testGraph.root = initialiseBasicDirectedAcyclicGraph();
+		ArrayList<ArrayList<Node>> allPaths = testGraph.BFSPathFind(testGraph.root, 10);
+		ArrayList<Node> allAncestors = testGraph.getAncestorList(allPaths);
+		System.out.println("Ancestor " + allAncestors.get(0).data + " is " + 
+		testGraph.findDistanceToAncestor(allAncestors.get(0),allPaths) + " Nodes away from the Node 10");
+		assertEquals(testGraph.findDistanceToAncestor(allAncestors.get(0),allPaths), 4);
+		
+		System.out.println("Ancestor " + allAncestors.get(1).data + " is " + 
+				testGraph.findDistanceToAncestor(allAncestors.get(1),allPaths) + " Nodes away from the Node 10");
+				assertEquals(testGraph.findDistanceToAncestor(allAncestors.get(1),allPaths), 3);
 	}
 	
 	@Test
