@@ -9,25 +9,24 @@ public class DirectedAcyclicGraphLCA
 	ArrayList<Integer> value2AncestorsDistance;
 	
 	//An ArrayList containing all possible paths of Nodes you can take from a starting Node to an end node
-	public ArrayList<ArrayList<Node>> BFSPathFind(Node root, Node start, Node end)
+	public ArrayList<ArrayList<Node>> BFSPathFind(Node start, int end)
 	{
 		ArrayList<ArrayList<Node>> queue = new ArrayList<ArrayList<Node>>();
 		ArrayList<ArrayList<Node>> completePaths = new ArrayList<ArrayList<Node>>();
 		ArrayList<Node> startingPath = new ArrayList<Node>();
-		startingPath.add(start);
+		startingPath.add(root);
 		queue.add(startingPath);
 		while(!queue.isEmpty())
 		{
-			//boolean pathFound = false;
 			ArrayList<Node> current = queue.remove(0);
 			Node lastNode = current.get(current.size()-1);
-			if (lastNode == end)
+			if (lastNode.data == end)
 			{
 				completePaths.add(current);
 			}
 			else
 			{
-				for(int i = 0; i < lastNode.getChildAmount()-1; i++)
+				for(int i = 0; i < lastNode.getChildAmount(); i++)
 				{
 					@SuppressWarnings("unchecked")
 					ArrayList<Node> nextPath = (ArrayList<Node>) current.clone();

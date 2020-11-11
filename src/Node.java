@@ -14,7 +14,7 @@ class Node
 	    
 	    public Node getChild(int i)
 	    {
-	    	if(i < children.size() - 1)
+	    	if(i < children.size())
 	    	{
 	    		return children.get(i);
 	    	}
