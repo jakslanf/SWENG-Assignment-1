@@ -24,6 +24,11 @@ class Node
 	    	}
 	    }
 	    
+	    public int getChildAmount()
+	    {
+	    	return children.size();
+	    }
+	    
 	    public void addChild(Node child)
 	    {
 	    	children.add(child);
