@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class DirectedAcyclicGraph
+public class DirectedAcyclicGraphLCA
 {
 	Node root;
 	ArrayList<Node> value1Ancestors;
