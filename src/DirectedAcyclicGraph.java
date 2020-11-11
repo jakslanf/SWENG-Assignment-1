@@ -8,6 +8,7 @@ public class DirectedAcyclicGraph
 	ArrayList<Node> value2Ancestors;
 	ArrayList<Integer> value2AncestorsDistance;
 	
+	//An ArrayList containing all possible paths of Nodes you can take from a starting Node to an end node
 	public ArrayList<ArrayList<Node>> BFSPathFind(Node root, Node start, Node end)
 	{
 		ArrayList<ArrayList<Node>> queue = new ArrayList<ArrayList<Node>>();
