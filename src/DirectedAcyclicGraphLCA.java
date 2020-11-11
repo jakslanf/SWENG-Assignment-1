@@ -10,6 +10,7 @@ public class DirectedAcyclicGraphLCA
 	
 	public int findLowestCommonAncestor(int value1, int value2)
 	{
+		int result = -1;
 		ArrayList<ArrayList<Node>> value1AllPaths = BFSPathFind(root, value1);
 		ArrayList<ArrayList<Node>> value2AllPaths = BFSPathFind(root, value2);
 		ArrayList<Node> value1Ancestors = getAncestorList(value1AllPaths);
@@ -29,7 +30,17 @@ public class DirectedAcyclicGraphLCA
 					" and " + value2DistanceToCommonAncestors.get(i) + " nodes from " + value2);
 		}
 		
-		return -1;
+		int total = -1;
+		for(int i =0; i < commonAncestors.size();i++)
+		{
+			int temp = value1DistanceToCommonAncestors.get(i) + value2DistanceToCommonAncestors.get(i);
+			if(total == -1 || temp < total)
+			{
+				total = temp;
+				result = commonAncestors.get(i).data;
+			}
+		}
+		return result;
 	}
 	
 	//An ArrayList containing all possible paths of Nodes you can take from a starting Node to an end node

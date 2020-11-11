@@ -12,7 +12,8 @@ public class DirectedAcyclicGraphLCATest {
 		System.out.println("TEST: findLowestCommonAncestor");
 		DirectedAcyclicGraphLCA testGraph = new DirectedAcyclicGraphLCA();
 		testGraph.root = initialiseBasicDirectedAcyclicGraph();
-		testGraph.findLowestCommonAncestor(7, 10);
+		//testGraph.findLowestCommonAncestor(7, 10);
+		assertEquals(7, testGraph.findLowestCommonAncestor(7, 10));
 	}
 	
 	@Test
