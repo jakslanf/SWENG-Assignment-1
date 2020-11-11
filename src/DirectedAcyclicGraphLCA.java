@@ -42,30 +42,29 @@ public class DirectedAcyclicGraphLCA
 	public ArrayList<Node> getAncestorList(ArrayList<ArrayList<Node>> allPaths)
 	{
 		ArrayList<Node> condensedList = new ArrayList<Node>();
-		
 		for(int i = 0; i < allPaths.size(); i++)
 		{
 			ArrayList<Node> currentPath = allPaths.get(i);
-			for(int j = 0; j < currentPath.size(); i++)
+			for(int j = 0; j < currentPath.size(); j++)
 			{
-				Node selectedNode = currentPath.get(i);
-
-				if(condensedList.indexOf(selectedNode) != -1)
+				Node selectedNode = currentPath.get(j);
+				if(condensedList.indexOf(selectedNode) == -1)
 				{
 					condensedList.add(selectedNode);
 				}
+
 			}
 		}
 		
 		return condensedList;
 	}
 	
-	public ArrayList<Node> findCommonAncestor(ArrayList<Node> ancestorList1, ArrayList<Node> ancestorList2)
+	public ArrayList<Node> findCommonAncestors(ArrayList<Node> ancestorList1, ArrayList<Node> ancestorList2)
 	{
 		ArrayList<Node> commonAncestors = new ArrayList<Node>();
 		for(int i =0; i < ancestorList1.size(); i++)
 		{
-			for(int j = 0; j < ancestorList2.size(); i++)
+			for(int j = 0; j < ancestorList2.size(); j++)
 			{
 				if(ancestorList1.get(i) == ancestorList2.get(j))
 				{
